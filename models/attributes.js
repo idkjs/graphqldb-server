@@ -1,0 +1,47 @@
+import { Schema } from 'mongoose';
+
+export const AttributesSchema = new Schema({
+  attributes: {
+    Take_out: Boolean,
+    Drive_Thru: Boolean,
+    Good_For: {
+      dessert: Boolean,
+      latenight: Boolean,
+      lunch: Boolean,
+      dinner: Boolean,
+      brunch: Boolean,
+      breakfast: Boolean,
+    },
+    Caters: Boolean,
+    Noise_Level: String,
+    Takes_Reservations: Boolean,
+    Delivery: Boolean,
+    Ambience: {
+      romantic: Boolean,
+      intimate: Boolean,
+      classy: Boolean,
+      hipster: Boolean,
+      divey: Boolean,
+      touristy: Boolean,
+      trendy: Boolean,
+      upscale: Boolean,
+      casual: Boolean,
+    },
+    Parking: {
+      garage: Boolean,
+      street: Boolean,
+      validated: Boolean,
+      lot: Boolean,
+      valet: Boolean,
+    },
+    Has_TV: Boolean,
+    Outdoor_Seating: Boolean,
+    Attire: String,
+    Alcohol: String,
+    Waiter_Service: Boolean,
+    Accepts_Credit_Cards: Boolean,
+    Good_for_Kids: Boolean,
+    Good_For_Groups: Boolean,
+    Price_Range: Number,
+  },
+});
