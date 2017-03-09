@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { graphql } from 'graphql';
 import { introspectionQuery, printSchema } from 'graphql/utilities';
-import Schema from './graphqlSchema';
+import Schema from '../schema';
 // import { getExampleNames, resolveExamplePath } from './config';
 
 async function buildSchema() {
