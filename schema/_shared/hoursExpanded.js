@@ -1,5 +1,8 @@
+import moment from 'moment';
+
 const openingHours = {
-  specialdays: [ // special days e.g. Christmas
+  specialdays: [
+    // special days e.g. Christmas
     {
       date: '25/12',
       open: [
@@ -15,7 +18,8 @@ const openingHours = {
       {
         start: '09:00',
         end: '18:00',
-      }, {
+      },
+      {
         start: '21:00',
         end: '02:00',
       },
@@ -62,12 +66,12 @@ const openingHours = {
 const now = moment();
 const ddd = now.format('ddd').toLowerCase();
 
-openingHours.specialdays.map((specialDay) => {
+openingHours.specialdays.map(specialDay => {
   if (specialDay.date === now.format('DD/MM')) {
-        // is it opened or closed now?
+    // is it opened or closed now?
   } else {
-    openingHours.normaldays[ddd].map((hours) => {
-        // is is opened or closed now?
+    openingHours.normaldays[ddd].map(hours => {
+      // is is opened or closed now?
     });
   }
 });

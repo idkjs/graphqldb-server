@@ -1,21 +1,10 @@
 import mongoose from 'mongoose';
 import composeWithMongoose from 'graphql-compose-mongoose';
-import composeWithRelay from 'graphql-compose-relay';
 
-import { ReviewTC } from './review';
-
+import { VotesSchema } from '../_shared/vote';
+import { ReviewTC } from '../review';
 import { LanguagesSchema } from './language';
-import { VotesSchema } from './vote';
-
-const AddressSchema = new mongoose.Schema(
-  {
-    street: String,
-    geo: {
-      type: [Number],   // [<longitude>, <latitude>]
-      index: '2dsphere', // create the geospatial index
-    },
-  },
-);
+import { AddressSchema } from './address';
 
 export const UserSchema = new mongoose.Schema({
   name: String, // standard types
@@ -56,7 +45,7 @@ export const UserSchema = new mongoose.Schema({
 
 export const User = mongoose.model('User', UserSchema);
 
-export const UserTC = composeWithRelay(composeWithMongoose(User));
+export const UserTC = composeWithMongoose(User);
 
 UserTC.addRelation(
   'reviewConnection',
@@ -100,6 +89,7 @@ UserTC.setResolver('findMany', UserTC.getResolver('findMany')
   //   return res;
   // })
 );
+
 // UserTC.addResolver({
 //   name: 'myCustomUpdate',
 //   kind: 'mutation',
@@ -117,9 +107,4 @@ UserTC.setResolver('findMany', UserTC.getResolver('findMany')
 //     // edit and do what you need..
 //     return user;
 //   },
-// });
-
-// // so now you may add you custom mutation to schema
-// GQC.rootMutation().addFields({
-//   customUserUpdate: UserTC.get('$myCustomUpdate'),
 // });

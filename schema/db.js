@@ -1,14 +1,20 @@
 import mongoose from 'mongoose';
-import { mongoUri } from './config';
+import { mongoUri } from '../config';
 
-mongoose.Promise = Promise;
-mongoose.connect(mongoUri, {
+const opts = {
+  promiseLibrary: Promise,
   server: {
     auto_reconnect: true,
     reconnectTries: Number.MAX_VALUE,
     reconnectInterval: 1000,
   },
-});
+  config: {
+    autoIndex: false,
+  },
+};
+
+mongoose.Promise = Promise;
+mongoose.connect(mongoUri, opts);
 
 export const connection = mongoose.connection;
 connection.on('error', (e) => {
